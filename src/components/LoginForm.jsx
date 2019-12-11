@@ -9,16 +9,19 @@ import firebase from '../config/firebase';
 
 class LoginForm extends Component {
   onEmailandPasswordLogin = () => {
+    // actionでログイン処理
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
   };
 
   onEmailandPasswordSignUp = () => {
+    // actionでサインアップ処理
     const { email, password } = this.props;
     this.props.signUpUser({ email, password });
   };
 
   onButtonPress = () => {
+    // formtextでログインとサインアップを切り替え
     if (this.props.formText === 'ログイン') {
       this.onEmailandPasswordLogin();
     } else {
@@ -27,29 +30,35 @@ class LoginForm extends Component {
   };
 
   onEmailChange = email => {
+    // フォームにテキストが入力されたらreduxのstoreを更新
     this.props.emailChanged(email.target.value);
   };
 
-  onPasswordChane = text => {
-    this.props.passwordChanged(text.target.value);
+  onPasswordChane = password => {
+    // フォームにテキストが入力されたらreduxのstoreを更新
+    this.props.passwordChanged(password.target.value);
   };
 
-  googleLogin = async () => {
+  googleLogin = () => {
+    // Googleログイン処理
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
   };
 
   facebookLogin = () => {
+    // フェイスブックログイン処理
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithRedirect(provider);
   };
 
   twitterLogin = () => {
+    // ツイッターログイン処理
     const provider = new firebase.auth.TwitterAuthProvider();
     firebase.auth().signInWithRedirect(provider);
   };
 
   renderErrorMessage = () => {
+    // エラーメッセージ
     const { error } = this.props;
     if (error === 'auth/user-not-found') {
       return 'ユーザー情報が登録されていません。';
@@ -111,6 +120,7 @@ class LoginForm extends Component {
   }
 }
 
+// Reduxと繋げる
 const mapStateToProps = ({ auth }) => {
   return {
     email: auth.email,
