@@ -3,14 +3,14 @@
 React、Firebase を使用したダイアログでのログインフォーム。  
 ソーシャルログインも実装しています。ログイン後ランディングページからページ偏移します。
 
-- E メールとパスワード
+- E メールとパスワード認証
 - Google 認証
 - Twitter 認証
 - Facebook 認証
 
 使用ライブラリ
 
-- 状態管理に redux、、react-redux、
+- 状態管理に redux、react-redux、
 - 非同期処理に redux-thunk
 - css フレームワークに material-ui
 - ルーティングに react-router-dom
@@ -45,6 +45,8 @@ REACT_APP_FB_APP_ID=XXXXXXXXX
 ```
 
 Firebase のコンソール画面で Authentication から、ログイン方法の Google、Twitter、Facebook 認証をオンにする。  
-参考
+以下の URL を参考にしてください。
 
 # チュートリアル
+
+[React と Firebase を使ってログインフォームを実装する ①](https://harkerhack.com/react-firebase-login-form-1)
