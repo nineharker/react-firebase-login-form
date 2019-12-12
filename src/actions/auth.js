@@ -33,26 +33,24 @@ export const loginUser = ({ email, password }) => async dispatch => {
     type: LOGIN_USER,
   });
 
-  firebase.auth().then(() => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        // ログイン成功、ユーザー情報を送る
-        dispatch({
-          type: LOGIN_USER_SUCCESS,
-          payload: user,
-        });
-      })
-      .catch(error => {
-        console.log(error);
-        // ログイン失敗、エラーコードを送る
-        dispatch({
-          type: LOGIN_USER_FAIL,
-          payload: error.code,
-        });
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(user => {
+      // ログイン成功、ユーザー情報を送る
+      dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: user,
       });
-  });
+    })
+    .catch(error => {
+      console.log(error);
+      // ログイン失敗、エラーコードを送る
+      dispatch({
+        type: LOGIN_USER_FAIL,
+        payload: error.code,
+      });
+    });
 };
 
 export const signUpUser = ({ email, password }) => async dispatch => {

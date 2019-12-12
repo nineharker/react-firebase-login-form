@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import LoginForm from './LoginForm';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-class LandingPage extends Component {
-  render() {
-    return (
-      <div>
-        LandingPage
-        <LoginForm formText={'ログイン'} />
-      </div>
-    );
+function LandingPage(props) {
+  if (props.isLoggedIn) {
+    return <Redirect to={'/logined'} />;
+  } else {
+    return <div>LandingPage</div>;
   }
 }
 
-export default LandingPage;
+const mapStateToProps = state => {
+  return { isLoggedIn: state.auth.isLoggedIn };
+};
+
+export default connect(mapStateToProps)(LandingPage);
